@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desain Cetak · FOKUS RNI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; background: #eef2f5; }
+        
+        /* Ukuran A4 Vertikal untuk Cetak */
+        .print-area {
+            width: 210mm;
+            height: 297mm;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            color: #1e293b;
+        }
+
+        /* Sembunyikan tombol saat mencetak */
+        @media print {
+            body { background: none; padding: 0; }
+            .print-area { margin: 0; box-shadow: none; }
+            .no-print { display: none !important; }
+        }
+
+        .file-input-area {
+            cursor: pointer;
+            transition: 0.2s;
+            border: 2px dashed #aaa;
+        }
+        .file-input-area:hover {
+            background-color: rgba(190, 18, 60, 0.05);
+            border-color: #be123c;
+        }
+        
+        /* Efek klik tombol wa */
+        .wa-button {
+            transition: transform 0.1s;
+        }
+        .wa-button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center min-h-screen p-5">
+
+    <div class="no-print bg-white p-4 rounded-full shadow-lg mb-6 flex gap-3">
+        <button onclick="window.print()" class="bg-blue-600 text-white px-8 py-3 rounded-full font-bold hover:bg-blue-700 transition text-lg">
+            <i class="fas fa-print mr-2"></i> CETAK / SIMPAN PDF
+        </button>
+    </div>
+
+    <div class="print-area p-12">
+
+        <div class="flex items-center justify-between pb-8 border-b-4 border-slate-100 mb-10">
+            <div class="text-left relative">
+                <input type="file" id="logoUpload" accept="image/*" class="hidden">
+                <label for="logoUpload" class="file-input-area w-40 h-40 rounded-full flex flex-col items-center justify-center bg-slate-50 border-2 border-dashed border-slate-300 overflow-hidden cursor-pointer no-print">
+                    <img id="logoPreview" src="" alt="Logo" class="w-full h-full object-cover hidden">
+                    <div id="logoPlaceholder" class="flex flex-col items-center text-slate-400 text-sm p-4 text-center">
+                        <i class="fas fa-cloud-upload-alt text-4xl mb-2"></i>
+                        <span>Upload Logo</span>
+                    </div>
+                </label>
+                <img id="logoPrint" src="" alt="Logo" class="w-40 h-40 rounded-full object-cover hidden">
+            </div>
+
+            <div class="text-right">
+                <span class="bg-yellow-400 text-slate-950 font-bold px-6 py-2 rounded-full text-sm uppercase tracking-widest">Angkatan 2026</span>
+                <h1 class="text-7xl font-extrabold tracking-tighter text-slate-950 mt-4 leading-[1.1]">
+                    Kursus Konselor <br><span class="text-red-600">Adiksi</span>
+                </h1>
+                <p class="text-3xl font-bold text-slate-700 mt-2">&nbsp;</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-5 gap-8 mb-10">
+            <div class="col-span-2 bg-slate-100 rounded-3xl overflow-hidden relative h-96 shadow-md border border-slate-200">
+                <input type="file" id="fotoKegiatan" accept="image/*" class="hidden">
+                <label for="fotoKegiatan" class="absolute inset-0 cursor-pointer group no-print">
+                    <img id="fotoPreview" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="kegiatan" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xl font-medium">
+                        <i class="fas fa-camera mr-3"></i> Ganti Foto
+                    </div>
+                </label>
+                <img id="fotoPrint" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="kegiatan" class="w-full h-full object-cover">
+            </div>
+            
+            <div class="col-span-3 flex items-center">
+                <p class="text-5xl font-semibold text-slate-800 leading-snug border-l-8 border-red-500 pl-8 py-4 bg-red-50 rounded-r-3xl">
+                    “Belajar, Mengabdi, dan Menjadi Bagian dari <span class="text-red-600 font-bold">Perubahan</span>.”
+                </p>
+            </div>
+        </div>
+
+        <div class="flex-1 grid grid-cols-2 gap-8">
+            <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100">
+                <h3 class="text-sm font-bold text-red-700 uppercase tracking-widest mb-4">📖 Rincian Program</h3>
+                <ul class="space-y-4 text-lg">
+                    <li class="flex items-start"><i class="fas fa-check-circle text-red-500 mt-1 mr-3"></i> 20x Pertemuan Teori (Dasar, NAPZA, Etika)</li>
+                    <li class="flex items-start"><i class="fas fa-check-circle text-red-500 mt-1 mr-3"></i> 20x Praktik (Simulasi, Asesmen, Supervisi)</li>
+                    <li class="flex items-start"><i class="fas fa-check-circle text-red-500 mt-1 mr-3"></i> Magang 4 Bulan (Proses Rehab, Case File)</li>
+                </ul>
+            </div>
+
+            <div class="flex flex-col gap-6">
+                <div class="bg-red-600 p-8 rounded-3xl text-white shadow-lg">
+                    <h3 class="text-sm font-bold text-yellow-300 uppercase tracking-widest mb-1">💰 Investasi</h3>
+                    <p class="text-6xl font-black tracking-tighter">Rp 18.000.000</p>
+                    <p class="text-xl text-red-100 mt-1">Termasuk Modul, Instruktur, & Sertifikat</p>
+                </div>
+
+                <a href="https://wa.me/6281283804811?text=Halo%20saya%20tertarik%20dengan%20Kursus%20Konselor%20Adiksi" 
+                   target="_blank"
+                   class="wa-button bg-green-600 p-8 rounded-3xl text-white flex items-center gap-5 shadow-lg hover:bg-green-700 transition">
+                    <i class="fab fa-whatsapp text-7xl"></i>
+                    <div>
+                        <p class="text-sm text-green-100 uppercase tracking-widest">Pendaftaran</p>
+                        <p class="text-4xl font-bold">0812-8380-4811</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="text-center text-slate-500 text-xl py-5 border-t-2 border-slate-100 mt-10">
+            Fokus Rehabilitasi Narkotika Indonesia (FOKUS RNI)
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // Upload Logo
+            const logoUpload = document.getElementById('logoUpload');
+            const logoPreview = document.getElementById('logoPreview');
+            const logoPrint = document.getElementById('logoPrint');
+            const logoPlaceholder = document.getElementById('logoPlaceholder');
+
+            logoUpload.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        logoPreview.src = e.target.result;
+                        logoPrint.src = e.target.result;
+                        logoPreview.classList.remove('hidden');
+                        logoPrint.classList.remove('hidden');
+                        logoPlaceholder.classList.add('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Upload Foto Kegiatan
+            const fotoKegiatan = document.getElementById('fotoKegiatan');
+            const fotoPreview = document.getElementById('fotoPreview');
+            const fotoPrint = document.getElementById('fotoPrint');
+
+            fotoKegiatan.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        fotoPreview.src = e.target.result;
+                        fotoPrint.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
